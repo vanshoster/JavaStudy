@@ -10,22 +10,22 @@ import java.util.stream.Stream;
 import static java.util.Arrays.asList;
 
 public class DataLoader {
-    Person person1 = new Person("Krist Novoselic", null, "American");
-    Person person2 = new Person("Frances Bean Cobain", null, "American");
+    Person person1 = new Person("Krist Novoselic", "American");
+    Person person2 = new Person("Frances Bean Cobain",  "American");
     Person person3 = new Person("Kurt Cobain", asList(person2), "American");
-    Person person4 = new Person("Lars Ulrich", null, "Danish-American");
-    Person person5 = new Person("Cali Hetfield", null, "American");
-    Person person6 = new Person("Castor Hetfield", null, "American");
-    Person person7 = new Person("Marcella Hetfield", null, "American");
+    Person person4 = new Person("Lars Ulrich", "Danish-American");
+    Person person5 = new Person("Cali Hetfield","American");
+    Person person6 = new Person("Castor Hetfield","American");
+    Person person7 = new Person("Marcella Hetfield","American");
     Person person8 = new Person("James Hetfield", asList(person5, person6, person7), "American");
-    Person person9 = new Person("Kirk Hammett", null, "American");
-    Person person10 = new Person("Jason Newsted", null, "American");
-    Person person11 = new Person("Jim Morrison", null, "African");
-    Person person12 = new Person("Pablo Manzarek", null, "Jewish");
+    Person person9 = new Person("Kirk Hammett","American");
+    Person person10 = new Person("Jason Newsted","American");
+    Person person11 = new Person("Jim Morrison","African");
+    Person person12 = new Person("Pablo Manzarek", "Jewish");
     Person person13 = new Person("Ray Manzarek", asList(person12), "Jewish");
-    Person person14 = new Person("Destiny Jones", null, "Russian");
+    Person person14 = new Person("Destiny Jones", "Russian");
     Person person15 = new Person("Nasir Jones", asList(person14), "Russian");
-    Person person16 = new Person("Joseph Adenuga", null, "African");
+    Person person16 = new Person("Joseph Adenuga", "African");
 
     List<Person> personList = Stream.of(person1, person2, person3, person4, person5, person6, person7, person8,
             person9, person10, person11, person12, person13, person14, person15, person16).toList();
@@ -109,4 +109,16 @@ public class DataLoader {
             track51, track52, track53, track54, track55, track56), asList(person16));
 
     List<Album> albumList = Stream.of(album1, album2, album3, album4, album5).toList();
+
+    public List<Track> getTrackList() {
+        return this.trackList;
+    }
+
+    public List<Person> getPersonList() {
+        return this.personList;
+    }
+
+    public List<Album> getAlbumList() {
+        return this.albumList;
+    }
 }
