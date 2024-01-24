@@ -25,7 +25,7 @@ public class Person {
     }
 
     public String getName() {return name;}
-    public Stream<Person> getMembers() {  return childrens.stream();   }
+    public Stream<Person> getChildrens() {  return childrens.stream();   }
     public String getNationality() {
         return nationality;
     }

@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
 
+
 public class LambdaTest2 {
     public static void main(String[] args) {
         f6();
@@ -84,7 +85,7 @@ public class LambdaTest2 {
 
     private static void f6() {
         DataLoader data = new DataLoader();
-        Set<String> info = data.getAlbumList().stream()
+        Set<String> info = DataLoader.albumList.stream()
                 .filter(q -> q.getNameAlbum().startsWith("Me"))
                 .map(q -> q.getFirstPersonFromListPersons().getNationality())
                 .collect(Collectors.toSet());

@@ -10,10 +10,9 @@ import java.util.function.Predicate;
 
 public class LambdaTest1 {
     public static void main(String[] args) {
-        DataLoader data = new DataLoader();
-        f2(data.getPersonList());
-        f2iterator(data.getPersonList());
-        f2stream(data.getPersonList());
+        f2(DataLoader.personList);
+        f2iterator(DataLoader.personList);
+        f2stream(DataLoader.personList);
     }
 
     private static void f1() {
