@@ -5,7 +5,6 @@ import vansho.lambdass.utils.Person;
 import vansho.lambdass.utils.Track;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
 
@@ -115,5 +114,17 @@ public final class DataLoader {
                 track51, track52, track53, track54, track55, track56), List.of(person16));
 
         albumList = List.of(album1, album2, album3, album4, album5);
+    }
+
+    public List<Track> getTrackList() {
+        return trackList;
+    }
+
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public List<Album> getAlbumList() {
+        return albumList;
     }
 }
