@@ -101,7 +101,7 @@ public final class DataLoader {
 
 
         Album album1 = new Album("Nevermind", asList(track1, track2, track3, track4, track5, track6, track7,
-                track8, track9, track10, track11, track12, track13), asList(person1, person3));
+                track8, track9, track10, track11, track12, track13), asList(person1, person3, person9));
 
         Album album2 = new Album("Metallica", asList(track14, track15, track16, track17, track18, track19,
                 track20, track21, track22, track23, track24), asList(person4, person8, person9, person10));
