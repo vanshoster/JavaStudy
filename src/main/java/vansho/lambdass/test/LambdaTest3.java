@@ -16,6 +16,9 @@ public class LambdaTest3 {
         f3(DataLoader.albumList);
         f3stream(DataLoader.albumList);
         f3stream(DataLoader.albumList);
+        f4stream2(DataLoader.albumList);
+        f4stream(DataLoader.albumList);
+        f4(DataLoader.albumList);
     }
 
     private static void f1(List<Person> personList) {
@@ -61,8 +64,33 @@ public class LambdaTest3 {
         var mapa = albumList.stream()
                 .collect(Collectors.groupingBy(q -> q.getPersonsStream()));
         System.out.println(mapa);
-
-
-
     }
-}
+
+    private static void f4stream(List<Album> albumList) {
+        Map<Person, List<String>> result = albumList.stream()
+                .collect(Collectors.groupingBy(
+                        q -> q.getFirstPersonFromListPersons(),
+                        Collectors.mapping(q -> q.getNameAlbum(), Collectors.toList())));
+
+        System.out.println(result);
+    }
+
+    private static void f4(List<Album> albumList) {
+        Map<Person, List<String>> nameOfAlbumForPerson = new HashMap<>();
+        Map<Person, List<Album>> mapPersonAlbum = albumList.stream()
+                .collect(Collectors.groupingBy(q -> q.getFirstPersonFromListPersons()));
+        for (Map.Entry<Person, List<Album>> mapEntry : mapPersonAlbum.entrySet()) {
+            nameOfAlbumForPerson.put(mapEntry.getKey(), mapEntry.getValue().stream().map(q -> q.getNameAlbum()).toList());
+        }
+        System.out.println(nameOfAlbumForPerson);
+    }
+
+    private static void f4stream2(List<Album> albumList) {
+        Map<Person, List<String>> result = albumList.stream()
+                .flatMap(album -> album.getPersonsList().stream()
+                        .map(person -> new AbstractMap.SimpleEntry<>(person, album.getNameAlbum())))
+                .collect(Collectors.groupingBy(q -> q.getKey(),
+                        Collectors.mapping(r -> r.getValue(), Collectors.toList())));
+        System.out.println(result);
+    }
+    }
