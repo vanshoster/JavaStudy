@@ -19,6 +19,7 @@ public class LambdaTest3 {
         f4stream2(DataLoader.albumList);
         f4stream(DataLoader.albumList);
         f4(DataLoader.albumList);
+        f4StrCombiner(DataLoader.personList);
     }
 
     private static void f1(List<Person> personList) {
@@ -93,4 +94,49 @@ public class LambdaTest3 {
                         Collectors.mapping(r -> r.getValue(), Collectors.toList())));
         System.out.println(result);
     }
+
+    private static void f4StrCombiner(List<Person> personList) {
+        String res = personList.stream()
+                .reduce(new StringCombiner(" >< ", "[", "]"),
+                        StringCombiner::add,
+                        StringCombiner::merge)
+                .toString();
+        System.out.println(res);
     }
+}
+
+class StringCombiner {
+    private StringBuilder stringBuilder;
+    private String delimiter;
+    private String prefix;
+    private String suffix;
+
+    public StringCombiner(String delimiter, String prefix, String suffix) {
+        this.delimiter = delimiter;
+        this.prefix = prefix;
+        this.suffix = suffix;
+        stringBuilder = new StringBuilder(prefix);
+    }
+
+    public StringCombiner() {
+        this("","","");
+    }
+
+    public static StringCombiner add(StringCombiner strCombiner, Person person) {
+        if (strCombiner.stringBuilder.length() > 1) {
+            strCombiner.stringBuilder.append(strCombiner.delimiter);
+        }
+        strCombiner.stringBuilder.append(person.getName());
+        return strCombiner;
+    }
+
+    public static StringCombiner merge(StringCombiner a, StringCombiner b) {
+        a.stringBuilder.append(b.stringBuilder);
+        return a;
+    }
+
+    @Override
+    public String toString() {
+        return this.stringBuilder.append(suffix).toString();
+    }
+}
